@@ -1,0 +1,776 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1331376021594391846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331376021594391842}
+  - component: {fileID: 1331376021594391845}
+  - component: {fileID: 1331376021594391844}
+  - component: {fileID: 1331376021594391847}
+  - component: {fileID: 231009940967283040}
+  - component: {fileID: 1331376022523750257}
+  - component: {fileID: 1331376021594391841}
+  - component: {fileID: 1331376022523750259}
+  - component: {fileID: 5974351966038777647}
+  - component: {fileID: 5974351966038777646}
+  m_Layer: 0
+  m_Name: Target Example
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1331376021594391842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 12, z: 56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1331376021594391845
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1331376021594391844
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &1331376021594391847
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &231009940967283040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCRIPT_Order: -1
+  ICON_Texture2D: {fileID: 2800000, guid: c16c5415b9e35b64ea327b07081a87c5, type: 3}
+  ICON_Style: 0
+  ICON_Visibility: 2
+  ICON_OffScreenBehavior: 1
+  ICON_OnScreenBehavior: 0
+  ICON_ScriptName: IconS1
+  ICON_Active: 1
+  ICON_Scale: 1
+  ICON_ChangeColor: 1
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 1
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 1
+  ICON_UpdateOrientationInstantaneously: 0
+  ICON_UpdatePositionInstantaneously: 1
+  ICON_ShowCustomText: 0
+  ICON_ShowDistance: 0
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1.7559259
+      value: 0.9952828
+      inSlope: 0.000047130343
+      outSlope: 0.000047130343
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.45405617
+    - serializedVersion: 3
+      time: 151.94928
+      value: 0.7161495
+      inSlope: -0.0012569331
+      outSlope: -0.0012569331
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.50805694
+    - serializedVersion: 3
+      time: 410.14716
+      value: 0.4394246
+      inSlope: -0.0010488064
+      outSlope: -0.0010488064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1548679
+    - serializedVersion: 3
+      time: 904.17194
+      value: 0.24347843
+      inSlope: -0.0002453902
+      outSlope: -0.0002453902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.35665232
+    - serializedVersion: 3
+      time: 1157.6941
+      value: 0.1428063
+      inSlope: -0.0010452032
+      outSlope: -0.0010452032
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.05858581
+    - serializedVersion: 3
+      time: 1564.53
+      value: 0.009433962
+      inSlope: 0.000005136239
+      outSlope: 0.000005136239
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1998.2441
+      value: 0
+      inSlope: -0.000026336369
+      outSlope: -0.000026336369
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07470443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 2000
+  ICON_FixedAngle: 0
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 10
+  ICON_RotationSmoothFactor: 30
+  ICON_MovementSmoothFactor: 1
+  ICON_RotationCorrection: 0
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 0.25
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 50
+  ICON_DistanceFromBorderInPixels: 65.53
+  ICON_DistanceFromTargetInPixels: 50
+  ICON_Color: {r: 1, g: 0.8926479, b: 0, a: 1}
+  ICON_AheadColor: {r: 1, g: 0.96470594, b: 0, a: 0}
+  ICON_RearColor: {r: 1, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: 5, y: 5}
+  COMPASS_Type: 0
+  COMPASS_OrientationCorrections: {x: 0, y: 0, z: 0}
+  COMPASS_HorLenght: 0
+  COMPASS_VertLenght: 0
+  COMPASS_PosX: 0.574
+  COMPASS_PosY: -0.547
+  DT_Font: {fileID: 0}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 0.5
+  DT_MinDistanceFromIcon: 30
+  DT_MaxDistanceFromIcon: 55
+  DT_FixedAngle: 0
+  DT_CustomUnitSize: 1
+  DT_Unit: 0
+  DT_Behavior: 0
+  CT_Font: {fileID: 0}
+  CT_Color: {r: 0, g: 0, b: 0, a: 0}
+  CT_MaxSize: 0.5
+  CT_MinDistanceFromIcon: 30
+  CT_MaxDistanceFromIcon: 55
+  CT_FixedAngle: 0
+  CT_String: 
+  CT_Behavior: 0
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 1
+  DI_Master: {fileID: 1331376022523750257}
+--- !u!114 &1331376022523750257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCRIPT_Order: 0
+  ICON_Texture2D: {fileID: 2800000, guid: 09abb921387bb364aa10f9552fbe4fe4, type: 3}
+  ICON_Style: 0
+  ICON_Visibility: 0
+  ICON_OffScreenBehavior: 0
+  ICON_OnScreenBehavior: 0
+  ICON_ScriptName: IconS2
+  ICON_Active: 1
+  ICON_Scale: 1
+  ICON_ChangeColor: 0
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 1
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 0
+  ICON_UpdateOrientationInstantaneously: 1
+  ICON_UpdatePositionInstantaneously: 1
+  ICON_ShowCustomText: 0
+  ICON_ShowDistance: 0
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1.7559259
+      value: 0.9952828
+      inSlope: 0.000047130343
+      outSlope: 0.000047130343
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.45405617
+    - serializedVersion: 3
+      time: 151.94928
+      value: 0.7161495
+      inSlope: -0.0012569331
+      outSlope: -0.0012569331
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.50805694
+    - serializedVersion: 3
+      time: 410.14716
+      value: 0.4394246
+      inSlope: -0.0010488064
+      outSlope: -0.0010488064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1548679
+    - serializedVersion: 3
+      time: 904.17194
+      value: 0.24347843
+      inSlope: -0.0002453902
+      outSlope: -0.0002453902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.35665232
+    - serializedVersion: 3
+      time: 1157.6941
+      value: 0.1428063
+      inSlope: -0.0010452032
+      outSlope: -0.0010452032
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.05858581
+    - serializedVersion: 3
+      time: 1564.53
+      value: 0.009433962
+      inSlope: 0.000005136239
+      outSlope: 0.000005136239
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1998.2441
+      value: 0
+      inSlope: -0.000026336369
+      outSlope: -0.000026336369
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07470443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 2000
+  ICON_FixedAngle: 206
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 10
+  ICON_RotationSmoothFactor: 1
+  ICON_MovementSmoothFactor: 1
+  ICON_RotationCorrection: 0
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 0.68
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 50
+  ICON_DistanceFromBorderInPixels: 25
+  ICON_DistanceFromTargetInPixels: 50
+  ICON_Color: {r: 1, g: 0.5291431, b: 0, a: 0}
+  ICON_AheadColor: {r: 0, g: 1, b: 0.011921406, a: 0}
+  ICON_RearColor: {r: 1, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: 5, y: 5}
+  COMPASS_Type: 2
+  COMPASS_OrientationCorrections: {x: 90, y: -90, z: 0}
+  COMPASS_HorLenght: 0.005
+  COMPASS_VertLenght: 0.846
+  COMPASS_PosX: 0.851
+  COMPASS_PosY: 0
+  DT_Font: {fileID: 0}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 0.52
+  DT_MinDistanceFromIcon: 31.8
+  DT_MaxDistanceFromIcon: 51.5
+  DT_FixedAngle: 0
+  DT_CustomUnitSize: 1
+  DT_Unit: 1
+  DT_Behavior: 0
+  CT_Font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  CT_Color: {r: 1, g: 1, b: 1, a: 0}
+  CT_MaxSize: 0.67
+  CT_MinDistanceFromIcon: 50.7
+  CT_MaxDistanceFromIcon: 83.4
+  CT_FixedAngle: 66
+  CT_String: Target
+  CT_Behavior: 0
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 1
+  DI_Master: {fileID: 1331376021594391841}
+--- !u!114 &1331376021594391841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCRIPT_Order: 1
+  ICON_Texture2D: {fileID: 2800000, guid: 304d3a30754cc7b4c9208259f15e637b, type: 3}
+  ICON_Style: 0
+  ICON_Visibility: 1
+  ICON_OffScreenBehavior: 0
+  ICON_OnScreenBehavior: 0
+  ICON_ScriptName: IconM1
+  ICON_Active: 1
+  ICON_Scale: 1
+  ICON_ChangeColor: 0
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 1
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 1
+  ICON_UpdateOrientationInstantaneously: 1
+  ICON_UpdatePositionInstantaneously: 1
+  ICON_ShowCustomText: 0
+  ICON_ShowDistance: 1
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1.7559259
+      value: 0.9952828
+      inSlope: 0.000047130343
+      outSlope: 0.000047130343
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.45405617
+    - serializedVersion: 3
+      time: 151.94928
+      value: 0.7161495
+      inSlope: -0.0012569331
+      outSlope: -0.0012569331
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.50805694
+    - serializedVersion: 3
+      time: 410.14716
+      value: 0.4394246
+      inSlope: -0.0010488064
+      outSlope: -0.0010488064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1548679
+    - serializedVersion: 3
+      time: 904.17194
+      value: 0.24347843
+      inSlope: -0.0002453902
+      outSlope: -0.0002453902
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.35665232
+    - serializedVersion: 3
+      time: 1157.6941
+      value: 0.1428063
+      inSlope: -0.0010452032
+      outSlope: -0.0010452032
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.05858581
+    - serializedVersion: 3
+      time: 1564.53
+      value: 0.009433962
+      inSlope: 0.000005136239
+      outSlope: 0.000005136239
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1998.2441
+      value: 0
+      inSlope: -0.000026336369
+      outSlope: -0.000026336369
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07470443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 2000
+  ICON_FixedAngle: 206
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 10
+  ICON_RotationSmoothFactor: 1
+  ICON_MovementSmoothFactor: 1
+  ICON_RotationCorrection: 0
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 0.54
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 50
+  ICON_DistanceFromBorderInPixels: 25
+  ICON_DistanceFromTargetInPixels: 50
+  ICON_Color: {r: 1, g: 0.9635534, b: 0, a: 0}
+  ICON_AheadColor: {r: 0, g: 1, b: 0.011921406, a: 0}
+  ICON_RearColor: {r: 1, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: 5, y: 5}
+  COMPASS_Type: 2
+  COMPASS_OrientationCorrections: {x: 90, y: -90, z: 0}
+  COMPASS_HorLenght: 0.005
+  COMPASS_VertLenght: 0.846
+  COMPASS_PosX: 0.851
+  COMPASS_PosY: 0
+  DT_Font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 0.52
+  DT_MinDistanceFromIcon: 39.39
+  DT_MaxDistanceFromIcon: 64.7
+  DT_FixedAngle: 0
+  DT_CustomUnitSize: 1
+  DT_Unit: 1
+  DT_Behavior: 1
+  CT_Font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  CT_Color: {r: 1, g: 1, b: 1, a: 0}
+  CT_MaxSize: 0.67
+  CT_MinDistanceFromIcon: 50.7
+  CT_MaxDistanceFromIcon: 83.4
+  CT_FixedAngle: 66
+  CT_String: Target
+  CT_Behavior: 0
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 0
+  DI_Master: {fileID: 0}
+--- !u!114 &1331376022523750259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f40f94b1337484abc6cb1e1772a48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5974351966038777647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCRIPT_Order: -1
+  ICON_Texture2D: {fileID: 2800000, guid: 76c337fa32bd4a04b8c92abed6c1ab45, type: 3}
+  ICON_Style: 0
+  ICON_Visibility: 1
+  ICON_OffScreenBehavior: 0
+  ICON_OnScreenBehavior: 2
+  ICON_ScriptName: 
+  ICON_Active: 1
+  ICON_Scale: 1
+  ICON_ChangeColor: 0
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 0
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 0
+  ICON_UpdateOrientationInstantaneously: 0
+  ICON_UpdatePositionInstantaneously: 1
+  ICON_ShowCustomText: 1
+  ICON_ShowDistance: 0
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.86792374
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 102.51261
+      value: 0.9493935
+      inSlope: 0.00041417117
+      outSlope: 0.00041417117
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 240.04901
+      value: 0.88545
+      inSlope: -0.001
+      outSlope: -0.001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 515.4408
+      value: 0.37533307
+      inSlope: -0.0016588359
+      outSlope: -0.0016588359
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 851.14215
+      value: 0.079531744
+      inSlope: -0.000298157
+      outSlope: -0.000298157
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3040354
+    - serializedVersion: 3
+      time: 1000
+      value: 0
+      inSlope: -0.001
+      outSlope: -0.001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 1000
+  ICON_FixedAngle: 295
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 5
+  ICON_RotationSmoothFactor: 30
+  ICON_MovementSmoothFactor: 25
+  ICON_RotationCorrection: 114
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 1
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 0
+  ICON_DistanceFromBorderInPixels: 25
+  ICON_DistanceFromTargetInPixels: 54.01
+  ICON_Color: {r: 1, g: 0.9333334, b: 0, a: 1}
+  ICON_AheadColor: {r: 0, g: 0, b: 0, a: 0}
+  ICON_RearColor: {r: 0, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: -5, y: -5}
+  COMPASS_Type: 0
+  COMPASS_OrientationCorrections: {x: 0, y: 0, z: 0}
+  COMPASS_HorLenght: 0
+  COMPASS_VertLenght: 0
+  COMPASS_PosX: 0
+  COMPASS_PosY: 0
+  DT_Font: {fileID: 0}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 0.5
+  DT_MinDistanceFromIcon: 30
+  DT_MaxDistanceFromIcon: 55
+  DT_FixedAngle: 0
+  DT_CustomUnitSize: 1
+  DT_Unit: 0
+  DT_Behavior: 0
+  CT_Font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  CT_Color: {r: 1, g: 0.5294118, b: 0, a: 1}
+  CT_MaxSize: 0.5
+  CT_MinDistanceFromIcon: 134
+  CT_MaxDistanceFromIcon: 111.2
+  CT_FixedAngle: 349
+  CT_String: TARGET
+  CT_Behavior: 2
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 0
+  DI_Master: {fileID: 0}
+--- !u!114 &5974351966038777646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331376021594391846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCRIPT_Order: 3
+  ICON_Texture2D: {fileID: 2800000, guid: 21c98265520fd5345bb9a3277fe26fb1, type: 3}
+  ICON_Style: 1
+  ICON_Visibility: 0
+  ICON_OffScreenBehavior: 0
+  ICON_OnScreenBehavior: 0
+  ICON_ScriptName: Compass1
+  ICON_Active: 1
+  ICON_Scale: 0
+  ICON_ChangeColor: 1
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 0
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 1
+  ICON_UpdateOrientationInstantaneously: 0
+  ICON_UpdatePositionInstantaneously: 0
+  ICON_ShowCustomText: 0
+  ICON_ShowDistance: 1
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -0.001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1000
+      value: 0
+      inSlope: -0.001
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 1000
+  ICON_FixedAngle: 0
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 5
+  ICON_RotationSmoothFactor: 30
+  ICON_MovementSmoothFactor: 25
+  ICON_RotationCorrection: 0
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 0.87
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 0
+  ICON_DistanceFromBorderInPixels: 25
+  ICON_DistanceFromTargetInPixels: 50
+  ICON_Color: {r: 0, g: 0, b: 0, a: 0}
+  ICON_AheadColor: {r: 0, g: 1, b: 0.07410216, a: 0}
+  ICON_RearColor: {r: 1, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: -5, y: -5}
+  COMPASS_Type: 0
+  COMPASS_OrientationCorrections: {x: 90, y: -90, z: 0}
+  COMPASS_HorLenght: 0
+  COMPASS_VertLenght: 0
+  COMPASS_PosX: 0
+  COMPASS_PosY: 0.708
+  DT_Font: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 1.1
+  DT_MinDistanceFromIcon: 63.87
+  DT_MaxDistanceFromIcon: 55
+  DT_FixedAngle: 90
+  DT_CustomUnitSize: 1
+  DT_Unit: 1
+  DT_Behavior: 2
+  CT_Font: {fileID: 0}
+  CT_Color: {r: 0, g: 0, b: 0, a: 0}
+  CT_MaxSize: 0.5
+  CT_MinDistanceFromIcon: 30
+  CT_MaxDistanceFromIcon: 55
+  CT_FixedAngle: 0
+  CT_String: 
+  CT_Behavior: 0
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 0
+  DI_Master: {fileID: 0}

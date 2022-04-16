@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6933531426830972024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1942112811818330321}
+  - component: {fileID: 2370118358277754310}
+  - component: {fileID: 6925002733303225785}
+  - component: {fileID: 3536193365729515512}
+  - component: {fileID: 6422766158695885122}
+  - component: {fileID: 7918549636642817507}
+  m_Layer: 0
+  m_Name: Target Example No Compass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1942112811818330321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.573, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2370118358277754310
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6925002733303225785
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3536193365729515512
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6422766158695885122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e652183e0e42c4a8ba40b6642671b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ICON_Texture2D: {fileID: 2800000, guid: 304d3a30754cc7b4c9208259f15e637b, type: 3}
+  ICON_Style: 0
+  ICON_Visibility: 1
+  ICON_OffScreenBehavior: 0
+  ICON_OnScreenBehavior: 3
+  ICON_ScriptName: Dynamic Icons
+  ICON_Active: 1
+  ICON_Scale: 1
+  ICON_ChangeColor: 0
+  ICON_UpdateColorInstantaneously: 0
+  ICON_Fade: 1
+  ICON_UpdateAlphaInstantaneously: 0
+  ICON_Rotation: 1
+  ICON_UpdateOrientationInstantaneously: 0
+  ICON_UpdatePositionInstantaneously: 1
+  ICON_ShowCustomText: 0
+  ICON_ShowDistance: 1
+  ICON_DistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -0.001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1000
+      value: 0
+      inSlope: -0.001
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ICON_DistanceCurveMaxDistance: 1000
+  ICON_FixedAngle: 0
+  ICON_ColorSmoothFactor: 5
+  ICON_FadeSmoothFactor: 5
+  ICON_RotationSmoothFactor: 30
+  ICON_MovementSmoothFactor: 25
+  ICON_RotationCorrection: 0
+  ICON_Eccentricity: 1
+  ICON_MaxSize: 1
+  ICON_AvoidCenter: 150
+  TARGET_MaxVisibleDistance: 500
+  TARGET_MinVisibleDistanceOnScreen: 0
+  ICON_DistanceFromBorderInPixels: 25
+  ICON_DistanceFromTargetInPixels: 50
+  ICON_Color: {r: 0.06051977, g: 0.19191827, b: 0.754717, a: 0}
+  ICON_AheadColor: {r: 0, g: 0, b: 0, a: 0}
+  ICON_RearColor: {r: 0, g: 0, b: 0, a: 0}
+  ICON_Decentration: {x: -5, y: -5}
+  COMPASS_Type: 0
+  COMPASS_OrientationCorrections: {x: 0, y: 0, z: 0}
+  COMPASS_AutoCalculateFromWorldComp: 0
+  COMPASS_HorLenght: 0
+  COMPASS_VertLenght: 0
+  COMPASS_PosX: 0
+  COMPASS_PosY: 0
+  DT_Font: {fileID: 0}
+  DT_Color: {r: 0, g: 0, b: 0, a: 0}
+  DT_MaxSize: 0.5
+  DT_MinDistanceFromIcon: 70
+  DT_MaxDistanceFromIcon: 90
+  DT_FixedAngle: 0
+  DT_CustomUnitSize: 1
+  DT_Unit: 0
+  DT_Behavior: 1
+  CT_Font: {fileID: 0}
+  CT_Color: {r: 0, g: 0, b: 0, a: 0}
+  CT_MaxSize: 0.5
+  CT_MinDistanceFromIcon: 30
+  CT_MaxDistanceFromIcon: 55
+  CT_FixedAngle: 0
+  CT_String: 
+  CT_Behavior: 0
+  SCRIPT_Order: -1
+  DEBUG_ShowFullEditor: 0
+  SCRIPT_IsSlave: 0
+  DI_Master: {fileID: 0}
+--- !u!114 &7918549636642817507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933531426830972024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21f40f94b1337484abc6cb1e1772a48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
