@@ -8,6 +8,7 @@ public class GamePlay : MonoBehaviour
     public TouchController touch_Controller;
     public GameCore game_Core;
     public GameObject troop_Model;
+    public GameObject tile_AllowedModel;
     public int troops_StartingNumber;
 
     public int troops_PlayersNumber;
@@ -24,6 +25,9 @@ public class GamePlay : MonoBehaviour
 
     public float UI_IconCorrectionX;
     public float UI_IconCorrectionY;
+
+    [ Range( 0.0f, 100.0f ) ]
+    public float troops_RouteDifficulty = 25.0f;
     
     private List<Troop> troops_List = new List<Troop>();
 
@@ -68,10 +72,6 @@ public class GamePlay : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void ShowMovementAllowed(){
-        
     }
 
     private void UpdateTroopInfo()
@@ -176,6 +176,488 @@ public class GamePlay : MonoBehaviour
         }
     }
 
+    public void TestShowMovementAllowed() {
+        Dictionary< Vector2Int, int > mappaTest = new Dictionary< Vector2Int, int >();
+        
+        mappaTest = ShowMovementAllowed( new Vector2Int( 50, 50 ), mappaTest, 1500 );
+        //mappaTest = ShowMovementAllowed2( new Vector2Int( 50, 50 ), mappaTest, 200, Enum.Cardinal.NorthEast, true );
+        //mappaTest = ShowMovementAllowed3( new Vector2Int( 50, 50 ), mappaTest, 100, Enum.Cardinal.NorthWest );
+
+        GameObject tile_Start = Instantiate(tile_AllowedModel, new Vector3( 50 , 50, -0.5f), Quaternion.identity);
+        tile_Start.GetComponent<Renderer>().material.color = Color.yellow;
+
+        DestroyImmediate( GameObject.Find( "Test" ) );
+        GameObject test = new GameObject( "Test" );
+
+        foreach( Vector2Int tupla in mappaTest.Keys )
+        {
+            GameObject tile_Allowed = Instantiate( tile_AllowedModel, new Vector3( tupla.x , tupla.y, -0.5f ), Quaternion.identity, test.transform );
+
+            float t = Vector3.Distance( tile_Allowed.transform.position, tile_Start.transform.position ) / 15;
+            //float t = mappaTest[ tupla ] / 750;
+            Debug.Log( ">>> t: " + t);
+            Color tile_color = Vector4.Lerp( Color.yellow, Color.red, t);
+            tile_color.a = 0.5f;
+            tile_Allowed.GetComponent<Renderer>().material.color = tile_color;
+
+        }
+    }
+
+    private Dictionary< Vector2Int, int > ShowMovementAllowed3( Vector2Int startingCoordinates, Dictionary< Vector2Int, int > allowedTilesMap, int remainedPA, Enum.Cardinal cardinalDirection )
+    {
+        int x = startingCoordinates.x, y = startingCoordinates.y; 
+
+        int currentPA = 0;
+
+        switch ( cardinalDirection ) {
+            // Blocco Nord-Ovest
+            case Enum.Cardinal.NorthWest:   Vector2Int pointNorthWest = new Vector2Int( x - 1, y + 1 );
+
+                                            if( pointNorthWest.x >= 0 && pointNorthWest.y < game_Core.WorldYSize() ) {
+                                                currentPA = remainedPA - game_Core.world_Matrix[ pointNorthWest.x, pointNorthWest.y ].tile_MovementRequired;
+
+                                                if( currentPA >= 0 ) 
+                                                {
+                                                    if( allowedTilesMap.ContainsKey( pointNorthWest ) )
+                                                    {
+                                                        if( currentPA > allowedTilesMap[ pointNorthWest ] ) {
+                                                            allowedTilesMap[ pointNorthWest ] = currentPA;
+                                                        }
+                                                    }
+                                                    else 
+                                                    {
+                                                        allowedTilesMap.Add( pointNorthWest, currentPA );
+                                                    }
+                                                    
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed3 ( pointNorthWest, allowedTilesMap, currentPA, Enum.Cardinal.NorthWest );
+                                                    }
+                                                }
+                                            }
+
+                                            //----//
+
+                                            Vector2Int pointWest = new Vector2Int( x - 1, y );
+
+                                            if( pointWest.x >= 0 ) {
+                                                currentPA = remainedPA - game_Core.world_Matrix[ pointWest.x, pointWest.y ].tile_MovementRequired;
+
+                                                if( currentPA >= 0 ) 
+                                                {
+                                                    if( allowedTilesMap.ContainsKey( pointWest ) )
+                                                    {
+                                                        if( currentPA > allowedTilesMap[ pointWest ] ) {
+                                                            allowedTilesMap[ pointWest ] = currentPA;
+                                                        }
+                                                    }
+                                                    else 
+                                                    {
+                                                        allowedTilesMap.Add( pointWest, currentPA );
+                                                    }
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed3 ( pointWest, allowedTilesMap, currentPA, Enum.Cardinal.NorthWest );
+                                                    }
+                                                }
+                                            }
+
+                                            //----//
+
+                                            Vector2Int pointNorth = new Vector2Int( x, y + 1 );
+
+                                            if( pointNorth.y < game_Core.WorldYSize() ) {
+                                                currentPA = remainedPA - game_Core.world_Matrix[ pointNorth.x, pointNorth.y ].tile_MovementRequired;
+
+                                                if( currentPA >= 0 ) 
+                                                {
+                                                    if( allowedTilesMap.ContainsKey( pointNorth ) )
+                                                    {
+                                                        if( currentPA > allowedTilesMap[ pointNorth ] ) {
+                                                            allowedTilesMap[ pointNorth ] = currentPA;
+                                                        }
+                                                    }
+                                                    else 
+                                                    {
+                                                        allowedTilesMap.Add( pointNorth, currentPA );
+                                                    }
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed3 ( pointNorth, allowedTilesMap, currentPA, Enum.Cardinal.NorthWest );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+        }
+
+        return allowedTilesMap;
+    }
+
+    private Dictionary< Vector2Int, int > ShowMovementAllowed2( Vector2Int startingCoordinates, Dictionary< Vector2Int, int > allowedTilesMap, int remainedPA, Enum.Cardinal cardinalDirection, bool isStarting )
+    {
+        int x = ( int )startingCoordinates.x, y = ( int )startingCoordinates.y, i = -1, j = -1; 
+
+        Vector2Int currentCoordinates;
+        int currentPA = 0;
+
+        switch ( cardinalDirection ) {
+            // Blocco Nord-Ovest
+            case Enum.Cardinal.NorthWest:   if( isStarting ) 
+                                            {
+                                                i = x;
+                                                isStarting = false;
+                                            }
+                                            else 
+                                            {
+                                                i = x - 1;
+                                            }
+                                            j = y + 1;
+
+                                            if( i >= 0 && j < game_Core.WorldYSize() ) 
+                                            {
+                                                currentCoordinates = new Vector2Int( i, j );
+
+                                                currentPA = remainedPA - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+
+                                                if( currentPA >= 0) 
+                                                {
+                                                    allowedTilesMap.Add( currentCoordinates, currentPA );
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.NorthWest, isStarting );
+                                                        //allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.North, false );
+                                                        //allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.West, false );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+
+            // Blocco Ausiliario Nord
+            case Enum.Cardinal.North:       i = x;
+                                            j = y + 1;
+
+                                            if( j < game_Core.WorldYSize() ) 
+                                            {
+                                                currentCoordinates = new Vector2Int( i, j );
+
+                                                currentPA = remainedPA - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+
+                                                if( currentPA >= 0) 
+                                                {
+                                                    allowedTilesMap.Add( currentCoordinates, currentPA );
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.North, false );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+            // Blocco Ausiliario Ovest
+            case Enum.Cardinal.West:        i = x - 1;
+                                            j = y;
+
+                                            if( i >= 0 ) 
+                                            {
+                                                currentCoordinates = new Vector2Int( i, j );
+
+                                                currentPA = remainedPA - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+
+                                                if( currentPA >= 0) 
+                                                {
+                                                    allowedTilesMap.Add( currentCoordinates, currentPA );
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.West, false );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+            // Blocco Nord-Est
+            case Enum.Cardinal.NorthEast:   if( isStarting ) 
+                                            {
+                                                j = y;
+                                                isStarting = false;
+                                            }
+                                            else 
+                                            {
+                                                j = y + 1;
+                                            }
+                                            i = x + 1;
+
+                                            if( i < game_Core.WorldXSize() && j < game_Core.WorldYSize() ) 
+                                            {
+                                                currentCoordinates = new Vector2Int( i, j );
+
+                                                currentPA = remainedPA - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+
+                                                if( currentPA >= 0) 
+                                                {
+                                                    allowedTilesMap.Add( currentCoordinates, currentPA );
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.North, false );
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.East, false );
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.NorthEast, false );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+
+            // Blocco Ausiliario East
+            case Enum.Cardinal.East:        i = x + 1;
+                                            j = y;
+
+                                            if( i < game_Core.WorldXSize() ) 
+                                            {
+                                                currentCoordinates = new Vector2Int( i, j );
+
+                                                currentPA = remainedPA - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+
+                                                if( currentPA >= 0) 
+                                                {
+                                                    allowedTilesMap.Add( currentCoordinates, currentPA );
+
+                                                    if( currentPA > 0 )
+                                                    {
+                                                        allowedTilesMap = ShowMovementAllowed2 ( currentCoordinates, allowedTilesMap, currentPA, Enum.Cardinal.East, false );
+                                                    }
+                                                }
+                                            }
+
+                                            break;
+                                            
+        }
+
+        return allowedTilesMap;
+
+
+    }
+
+    private Dictionary< Vector2Int, int > ShowMovementAllowed( Vector2Int startingCoordinates, Dictionary< Vector2Int, int > allowedTilesMap, int actualMovementRemained )
+    {
+        int x = ( int )startingCoordinates.x, y = ( int )startingCoordinates.y, j = -1, i = -1;
+
+        //*-*-*-*-*
+
+        j = y + 1;
+        if( j < game_Core.WorldYSize() )
+        { 
+        
+            for( i = x; i <= x + 1; i++ )
+            {
+                if( i < game_Core.WorldXSize() )
+                {
+                    int currentTileMovementRemained = actualMovementRemained - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+                    Enum.TileType currentTileType = game_Core.world_Matrix[ i, j ].tile_Type;
+
+                    if( currentTileMovementRemained >= game_Core.tile_RoadMovementRequired )
+                    {
+                        Vector2Int coordinates = new Vector2Int( i, j );
+
+                        if( allowedTilesMap.ContainsKey( coordinates )  ) 
+                        {
+                            int savedTileMovementRemained = allowedTilesMap[ coordinates ];
+
+                            if( savedTileMovementRemained < currentTileMovementRemained ) 
+                            {
+                                allowedTilesMap[ coordinates ] = currentTileMovementRemained;
+
+                                if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired ){
+                                    allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                                }
+                            }
+                            else 
+                            {
+                                currentTileMovementRemained = savedTileMovementRemained;
+                            }
+                        }
+                        else 
+                        {
+                            if( currentTileType != Enum.TileType.River && currentTileType != Enum.TileType.City && currentTileType != Enum.TileType.Lake )
+                            {
+                                allowedTilesMap.Add( coordinates, currentTileMovementRemained );
+                            }
+
+                            if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired )
+                            { 
+                                allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //*-*-*-*-*
+        j = y - 1;
+        if( j >= 0 )
+        {
+            for( i = x; i >= x - 1; i-- )
+            {
+                if( i >= 0 )
+                {
+                    int currentTileMovementRemained = actualMovementRemained - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+                    Enum.TileType currentTileType = game_Core.world_Matrix[ i, j ].tile_Type;
+
+                    if( currentTileMovementRemained >= game_Core.tile_RoadMovementRequired )
+                    {
+                        Vector2Int coordinates = new Vector2Int( i, j );
+
+                        if( allowedTilesMap.ContainsKey( coordinates )  ) 
+                        {
+                            int savedTileMovementRemained = allowedTilesMap[ coordinates ];
+
+                            if( savedTileMovementRemained < currentTileMovementRemained ) 
+                            {
+                                allowedTilesMap[ coordinates ] = currentTileMovementRemained;
+
+                                if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired ){
+                                    allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                                }
+                            }
+                            else 
+                            {
+                                currentTileMovementRemained = savedTileMovementRemained;
+                            }
+                        }
+                        else 
+                        {
+                            if( currentTileType != Enum.TileType.River && currentTileType != Enum.TileType.City && currentTileType != Enum.TileType.Lake )
+                            {
+                                allowedTilesMap.Add( coordinates, currentTileMovementRemained );
+                            }
+
+                            if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired )
+                            { 
+                                allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //*-*-*-*-* 
+
+        i = x + 1;
+        if( i < game_Core.WorldXSize() )
+        {
+
+            for( j = y; j <= y + 1; j++ )
+            {
+                if( j < game_Core.WorldYSize() )
+                {
+                    int currentTileMovementRemained = actualMovementRemained - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+                    Enum.TileType currentTileType = game_Core.world_Matrix[ i, j ].tile_Type;
+
+                    if( currentTileMovementRemained >= game_Core.tile_RoadMovementRequired )
+                    {
+                        Vector2Int coordinates = new Vector2Int( i, j );
+
+                        if( allowedTilesMap.ContainsKey( coordinates )  ) 
+                        {
+                            int savedTileMovementRemained = allowedTilesMap[ coordinates ];
+
+                            if( savedTileMovementRemained < currentTileMovementRemained ) 
+                            {
+                                allowedTilesMap[ coordinates ] = currentTileMovementRemained;
+
+                                if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired ){
+                                    allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                                }
+                            }
+                            else 
+                            {
+                                currentTileMovementRemained = savedTileMovementRemained;
+                            }
+                        }
+                        else 
+                        {
+                            if( currentTileType != Enum.TileType.River && currentTileType != Enum.TileType.City && currentTileType != Enum.TileType.Lake )
+                            {
+                                allowedTilesMap.Add( coordinates, currentTileMovementRemained );
+                            }
+
+                            if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired )
+                            { 
+                                allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //*-*-*-*-* 
+
+        i = x - 1;
+        if( i >= 0 )
+        {
+
+            for( j = y; j >= y - 1; j-- )
+            {
+                if( j < game_Core.WorldYSize() )
+                {
+                    int currentTileMovementRemained = actualMovementRemained - game_Core.world_Matrix[ i, j ].tile_MovementRequired;
+                    Enum.TileType currentTileType = game_Core.world_Matrix[ i, j ].tile_Type;
+
+                    if( currentTileMovementRemained >= game_Core.tile_RoadMovementRequired )
+                    {
+                        Vector2Int coordinates = new Vector2Int( i, j );
+
+                        if( allowedTilesMap.ContainsKey( coordinates )  ) 
+                        {
+                            int savedTileMovementRemained = allowedTilesMap[ coordinates ];
+
+                            if( savedTileMovementRemained < currentTileMovementRemained ) 
+                            {
+                                allowedTilesMap[ coordinates ] = currentTileMovementRemained;
+
+                                if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired ){
+                                    allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                                }
+                            }
+                            else 
+                            {
+                                currentTileMovementRemained = savedTileMovementRemained;
+                            }
+                        }
+                        else 
+                        {
+                            if( currentTileType != Enum.TileType.River && currentTileType != Enum.TileType.City && currentTileType != Enum.TileType.Lake )
+                            {
+                                allowedTilesMap.Add( coordinates, currentTileMovementRemained );
+                            }
+
+                            if( currentTileMovementRemained > game_Core.tile_RoadMovementRequired )
+                            { 
+                                allowedTilesMap = ShowMovementAllowed( new Vector2Int( i, j ), allowedTilesMap, currentTileMovementRemained );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //*-*-*-*-* 
+
+        Debug.Log( "allowedTilesMap size: " + allowedTilesMap.Count );
+
+        return allowedTilesMap;
+    }
+
     public class Troop
     {
         public GameObject gameObjectInstance = null;
@@ -208,8 +690,11 @@ public class GamePlay : MonoBehaviour
 
     public class AllowedTile
     {
-        int tile_X, tile_Y;
-        public AllowedTile(int coordinate_X, int coordinate_Y) // costruttore
+        public int tile_X, tile_Y;
+
+        public int tile_MaxMovementRemained { get; set; }
+
+        public AllowedTile(int coordinate_X, int coordinate_Y ) // costruttore
         {
             tile_X = coordinate_X;
             tile_Y = coordinate_Y;

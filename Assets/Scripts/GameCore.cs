@@ -75,12 +75,19 @@ public class GameCore : MonoBehaviour
         [Space]
 
     public GameObject tile_Plain;
+    public int tile_PlainMovementRequired = 2;
     public GameObject tile_Mountain;
+    public int tile_MountainMovementRequired = 6;
     public GameObject tile_Forest;
+    public int tile_ForestMovementRequired = 3;
     public GameObject tile_Road;
+    public int tile_RoadMovementRequired = 1;
     public GameObject tile_City;
+    public int tile_CityMovementRequired = 99;
     public GameObject tile_Lake;
+    public int tile_LakeMovementRequired = 99;
     public GameObject tile_River;
+    public int tile_RiverMovementRequired = 10;
     public GameObject plain_Plane;
 
     //----//
@@ -109,10 +116,20 @@ public class GameCore : MonoBehaviour
 
     public void InitializeWorld()
     {
-        if(settings_AdaptGenerationToScreen)
+        if( settings_AdaptGenerationToScreen )
         {
-            world_X = (int)(Screen.width / settings_PixelsPerTile);
-            world_Y = (int)(Screen.height / settings_PixelsPerTile);
+            int world_newX = (int)( Screen.width / settings_PixelsPerTile );
+            int world_newY = (int)( Screen.height / settings_PixelsPerTile );
+
+            if( world_newX < world_X )
+            {
+                world_X = world_newX;
+            }
+
+            if( world_newY < world_Y )
+            {
+                world_Y = world_newY;
+            }
         }
 
         world_Matrix = new Tile[world_X, world_Y];
@@ -122,6 +139,7 @@ public class GameCore : MonoBehaviour
             for(int j = 0; j < world_Y; j++)
             {
                 world_Matrix[i, j] = new Tile(i, j);
+                world_Matrix[i, j].tile_MovementRequired = tile_PlainMovementRequired;
             }
         }
     }
@@ -135,6 +153,8 @@ public class GameCore : MonoBehaviour
 
     public void GenerateWorld()
     {
+        DestroyImmediate( GameObject.Find( "Test" ) );
+
         world_Ready = false;
 
         DeleteLevel();
@@ -246,6 +266,7 @@ public class GameCore : MonoBehaviour
         //Debug.Log("Direzione principale fiume " + river_Counter  + ": " + river_MainDirection + " | Coordinate: " + river_Coordinates);
 
         world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y].tile_Type = Enum.TileType.River;
+        world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y].tile_MovementRequired = tile_RiverMovementRequired;
 
         int river_ActualLength = 1;
         int river_LoopController = 0;
@@ -308,6 +329,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x + 1, river_Coordinates.y);
@@ -343,6 +365,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y - 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y - 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y - 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x + 1, river_Coordinates.y - 1);
@@ -379,6 +402,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y - 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y - 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y - 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x, river_Coordinates.y - 1);
@@ -414,6 +438,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y - 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y - 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y - 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x - 1, river_Coordinates.y - 1);
@@ -448,6 +473,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x - 1, river_Coordinates.y);
@@ -483,6 +509,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y + 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y + 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x - 1, (int)river_Coordinates.y + 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x - 1, river_Coordinates.y + 1);
@@ -518,6 +545,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y + 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y + 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x, (int)river_Coordinates.y + 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             //Debug.Log("Tile coordinate: " + river_Coordinates);
@@ -551,6 +579,7 @@ public class GameCore : MonoBehaviour
                                                             if(!river_TilesProibited.Contains(world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y + 1].tile_Type))
                                                             {
                                                                 world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y + 1].tile_Type = Enum.TileType.River;
+                                                                world_Matrix[(int)river_Coordinates.x + 1, (int)river_Coordinates.y + 1].tile_MovementRequired = tile_RiverMovementRequired;
                                                             }
 
                                                             river_Coordinates = new Vector2(river_Coordinates.x + 1, river_Coordinates.y + 1);
@@ -605,20 +634,24 @@ public class GameCore : MonoBehaviour
             if(world_Matrix[pos_X + 1, pos_Y].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 50.0f * (int)erosion_River)
             {
                 world_Matrix[pos_X + 1, pos_Y].tile_Type = Enum.TileType.Plain;
+                world_Matrix[pos_X + 1, pos_Y].tile_MovementRequired = tile_PlainMovementRequired;
 
                 if(world_Matrix[pos_X + 2, pos_Y].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 25.0f * (int)erosion_River)
                 {
                     world_Matrix[pos_X + 2, pos_Y].tile_Type = Enum.TileType.Plain;
+                    world_Matrix[pos_X + 2, pos_Y].tile_MovementRequired = tile_PlainMovementRequired;
                 }      
             }
 
             if(world_Matrix[pos_X - 1, pos_Y].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 50.0f * (int)erosion_River)
             {
                 world_Matrix[pos_X - 1, pos_Y].tile_Type = Enum.TileType.Plain;
+                world_Matrix[pos_X - 1, pos_Y].tile_MovementRequired = tile_PlainMovementRequired;
 
                 if(world_Matrix[pos_X - 2, pos_Y].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 25.0f * (int)erosion_River)
                 {
                     world_Matrix[pos_X - 2, pos_Y].tile_Type = Enum.TileType.Plain;
+                    world_Matrix[pos_X - 2, pos_Y].tile_MovementRequired = tile_PlainMovementRequired;
                 }      
             }
 
@@ -627,20 +660,24 @@ public class GameCore : MonoBehaviour
             if(world_Matrix[pos_X, pos_Y + 1].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 50.0f * (int)erosion_River)
             {
                 world_Matrix[pos_X, pos_Y + 1].tile_Type = Enum.TileType.Plain;
+                world_Matrix[pos_X, pos_Y + 1].tile_MovementRequired = tile_PlainMovementRequired;
 
                 if(world_Matrix[pos_X, pos_Y + 2].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 25.0f * (int)erosion_River)
                 {
                     world_Matrix[pos_X, pos_Y + 2].tile_Type = Enum.TileType.Plain;
+                    world_Matrix[pos_X, pos_Y + 2].tile_MovementRequired = tile_PlainMovementRequired;
                 }     
             }
 
             if(world_Matrix[pos_X, pos_Y - 1].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 50.0f * (int)erosion_River)
             {
                 world_Matrix[pos_X, pos_Y - 1].tile_Type = Enum.TileType.Plain;
+                world_Matrix[pos_X, pos_Y - 1].tile_MovementRequired = tile_PlainMovementRequired;
 
                 if(world_Matrix[pos_X, pos_Y - 2].tile_Type == Enum.TileType.Mountain && Random.Range(0.0f, 100.0f) <= 25.0f * (int)erosion_River)
                 {
                     world_Matrix[pos_X, pos_Y - 2].tile_Type = Enum.TileType.Plain;
+                    world_Matrix[pos_X, pos_Y - 2].tile_MovementRequired = tile_PlainMovementRequired;
                 }     
             }
         }
@@ -731,6 +768,7 @@ public class GameCore : MonoBehaviour
                             if(Random.Range(0.0f, 100.0f) <= mountains_SecondaryDensity)
                             {
                                 world_Matrix[x, y].tile_Type = Enum.TileType.Mountain;
+                                world_Matrix[x, y].tile_MovementRequired = tile_MountainMovementRequired;
                             }
                         }
                     }
@@ -808,6 +846,7 @@ public class GameCore : MonoBehaviour
                             if(world_Matrix[k, h].tile_Type == Enum.TileType.Plain)
                             {
                                 world_Matrix[k, h].tile_Type = Enum.TileType.Forest;
+                                world_Matrix[k, h].tile_MovementRequired = tile_ForestMovementRequired;
                             }
                         }
                     }
@@ -821,6 +860,7 @@ public class GameCore : MonoBehaviour
                             if(world_Matrix[h, k].tile_Type == Enum.TileType.Plain)
                             {
                                 world_Matrix[h, k].tile_Type = Enum.TileType.Forest;
+                                world_Matrix[h, k].tile_MovementRequired = tile_ForestMovementRequired;
                             }
                         }
                     }
@@ -922,6 +962,7 @@ public class GameCore : MonoBehaviour
                         for(int y = (int)lake_SubStart.y; y < (int)lake_SubStart.y + lake_SubExtension; y++)
                         {
                             world_Matrix[x, y].tile_Type = Enum.TileType.Lake;
+                            world_Matrix[x, y].tile_MovementRequired = tile_LakeMovementRequired;
                         }
                     }
                 }
@@ -970,6 +1011,7 @@ public class GameCore : MonoBehaviour
                    if(counter_SameTile < (int)erosion_GlobalForce)
                     {
                         world_Matrix[i, j].tile_Type = Enum.TileType.Plain;
+                        world_Matrix[i, j].tile_MovementRequired = tile_PlainMovementRequired;
                     }
                }
             }
@@ -1065,7 +1107,8 @@ public class GameCore : MonoBehaviour
                 {
                     if(world_Matrix[x, y].tile_Type != Enum.TileType.River)
                     {
-                        world_Matrix[x, y].tile_Type = Enum.TileType.City; 
+                        world_Matrix[x, y].tile_Type = Enum.TileType.City;
+                        world_Matrix[x, y].tile_MovementRequired = tile_CityMovementRequired;
                     }
                 }
             }
@@ -1075,13 +1118,17 @@ public class GameCore : MonoBehaviour
             for(int x = x_Min; x <= x_Max; x++)
             {
                 world_Matrix[x, y_Min].tile_Type = Enum.TileType.Road; 
+                world_Matrix[x, y_Min].tile_MovementRequired = tile_RoadMovementRequired;
                 world_Matrix[x, y_Max].tile_Type = Enum.TileType.Road; 
+                world_Matrix[x, y_Max].tile_MovementRequired = tile_RoadMovementRequired;
             }
 
             for(int y = y_Min ; y <= y_Max; y++)
             {
-                world_Matrix[x_Min, y].tile_Type = Enum.TileType.Road; 
+                world_Matrix[x_Min, y].tile_Type = Enum.TileType.Road;
+                world_Matrix[x_Min, y].tile_MovementRequired = tile_RoadMovementRequired;
                 world_Matrix[x_Max, y].tile_Type = Enum.TileType.Road;
+                world_Matrix[x_Max, y].tile_MovementRequired = tile_RoadMovementRequired;
             }
 
             //----//
@@ -1095,7 +1142,8 @@ public class GameCore : MonoBehaviour
             {
                 for(int k = x_Min + 1; k < x_Max; k++)
                 {
-                    world_Matrix[k, y_Med].tile_Type = Enum.TileType.Road; 
+                    world_Matrix[k, y_Med].tile_Type = Enum.TileType.Road;
+                    world_Matrix[k, y_Med].tile_MovementRequired = tile_RoadMovementRequired;
                 }
             }
 
@@ -1103,7 +1151,8 @@ public class GameCore : MonoBehaviour
             {
                 for(int k = y_Min + 1; k < y_Max; k++)
                 {
-                    world_Matrix[x_Med, k].tile_Type = Enum.TileType.Road; 
+                    world_Matrix[x_Med, k].tile_Type = Enum.TileType.Road;
+                    world_Matrix[x_Med, k].tile_MovementRequired = tile_RoadMovementRequired;
                 }
             }
 
@@ -1159,6 +1208,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x - h, (int) road_StartPosition.y - h);
                                                                                             }
@@ -1181,6 +1231,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x + h, (int) road_StartPosition.y - h);
                                                                                             }
@@ -1201,6 +1252,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y - h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y - h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y - h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x, (int) road_StartPosition.y - h);
                                                                                             }
@@ -1248,6 +1300,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y - h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x - h, (int) road_StartPosition.y - h);
                                                                                             }
@@ -1269,6 +1322,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x - h, (int) road_StartPosition.y + h);
                                                                                             }
@@ -1289,6 +1343,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x - h, (int) road_StartPosition.y);
                                                                                             }
@@ -1336,6 +1391,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x - h, (int) road_StartPosition.y + h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x - h, (int) road_StartPosition.y + h);
                                                                                             }
@@ -1357,6 +1413,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x + h, (int) road_StartPosition.y + h);
                                                                                             }
@@ -1377,6 +1434,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y + h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y + h].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x, (int) road_StartPosition.y + h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x, (int) road_StartPosition.y + h);
                                                                                             }
@@ -1424,6 +1482,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_Type = Enum.TileType.Road;
+                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y - h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x + h, (int) road_StartPosition.y - h);
                                                                                             }
@@ -1445,6 +1504,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_Type = Enum.TileType.Road;
+                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y + h].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x + h, (int) road_StartPosition.y + h);
                                                                                             }
@@ -1465,6 +1525,7 @@ public class GameCore : MonoBehaviour
                                                                                             if(world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y].tile_Type != Enum.TileType.City)
                                                                                             {
                                                                                                 world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y].tile_Type = Enum.TileType.Road;
+                                                                                                world_Matrix[(int) road_StartPosition.x + h, (int) road_StartPosition.y].tile_MovementRequired = tile_RoadMovementRequired;
 
                                                                                                 AddCity((int) road_StartPosition.x + h, (int) road_StartPosition.y);
                                                                                             }
@@ -1501,20 +1562,24 @@ public class GameCore : MonoBehaviour
                     if(world_Matrix[i + 1, j].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 30.0f)
                     {
                         world_Matrix[i + 1, j].tile_Type = Enum.TileType.Plain;
+                        world_Matrix[i + 1, j].tile_MovementRequired = tile_PlainMovementRequired;
 
                         if(world_Matrix[i + 2, j].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 15.0f)
                         {
                             world_Matrix[i + 2, j].tile_Type = Enum.TileType.Plain;
+                            world_Matrix[i + 2, j].tile_MovementRequired = tile_PlainMovementRequired;
                         }      
                     }
 
                     if(world_Matrix[i - 1, j].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 30.0f)
                     {
                         world_Matrix[i - 1, j].tile_Type = Enum.TileType.Plain;
+                        world_Matrix[i - 1, j].tile_MovementRequired = tile_PlainMovementRequired;
 
                         if(world_Matrix[i - 2, j].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 15.0f)
                         {
                             world_Matrix[i - 2, j].tile_Type = Enum.TileType.Plain;
+                            world_Matrix[i - 2, j].tile_MovementRequired = tile_PlainMovementRequired;
                         }      
                     }
 
@@ -1523,20 +1588,24 @@ public class GameCore : MonoBehaviour
                     if(world_Matrix[i, j + 1].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 30.0f)
                     {
                         world_Matrix[i, j + 1].tile_Type = Enum.TileType.Plain;
+                        world_Matrix[i, j + 1].tile_MovementRequired = tile_PlainMovementRequired;
 
                         if(world_Matrix[i, j + 2].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 15.0f)
                         {
                             world_Matrix[i, j + 2].tile_Type = Enum.TileType.Plain;
+                            world_Matrix[i, j + 2].tile_MovementRequired = tile_PlainMovementRequired;
                         }     
                     }
 
                     if(world_Matrix[i, j - 1].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 50.0f)
                     {
                         world_Matrix[i, j - 1].tile_Type = Enum.TileType.Plain;
+                        world_Matrix[i, j - 1].tile_MovementRequired = tile_PlainMovementRequired;
 
                         if(world_Matrix[i, j - 2].tile_Type == Enum.TileType.Lake && Random.Range(0.0f, 100.0f) <= 30.0f)
                         {
                             world_Matrix[i, j - 2].tile_Type = Enum.TileType.Plain;
+                            world_Matrix[i, j - 2].tile_MovementRequired = tile_PlainMovementRequired;
                         }     
                     }
                 }
@@ -1599,6 +1668,7 @@ public class GameCore : MonoBehaviour
     {
         public int tile_X;
         public int tile_Y;
+        public int tile_MovementRequired;
         //private bool tile_IsFree = true;
         public Enum.TileType tile_Type = Enum.TileType.Plain;
 
