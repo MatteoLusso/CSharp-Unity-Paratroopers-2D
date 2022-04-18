@@ -2084,7 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722173ba421ca42448b2d2667ee5dbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings_AdaptGenerationToScreen: 1
+  settings_AdaptGenerationToScreen: 0
   settings_PixelsPerTile: 20
   game_Play: {fileID: 919729555}
   world_X: 150
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   mountains_Density: 3
   mountains_SecondaryDensity: 55
   mountains_Size: 1
-  forests_Density: 3.5
+  forests_Density: 4.5
   forests_Size: 0
   lakes_MaxNumber: 4
   lake_MinRepetitions: 1
